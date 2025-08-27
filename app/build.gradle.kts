@@ -2,11 +2,14 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.dagger.hilt.android)
+    alias(libs.plugins.android.ksp)
 }
 
 android {
     namespace = "com.aya.todoapp_jetpackcompose"
     compileSdk = 35
+
 
     defaultConfig {
         applicationId = "com.aya.todoapp_jetpackcompose"
@@ -50,6 +53,23 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     testImplementation(libs.junit)
+
+
+    // Hilt main dependency
+    implementation( "com.google.dagger:hilt-android:2.56.2")
+
+    // Hilt compiler (annotation processor)
+    ksp( "com.google.dagger:hilt-android-compiler:2.56.2")
+
+    // (اختياري) لو بتستخدم Hilt مع ViewModel
+    implementation ("androidx.hilt:hilt-navigation-compose:1.2.0")
+
+
+    //  coroutines
+    implementation ("androidx.room:room-ktx:2.7.2")
+    // implementation("androidx.room:room-runtime:2.7.2")
+    //  ksp ("androidx.room:room-compiler:2.7.2")
+
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
